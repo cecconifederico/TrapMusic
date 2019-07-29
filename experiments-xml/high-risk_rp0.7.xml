@@ -119,7 +119,8 @@
   <metric>soc-online-counter</metric>
   <metric>rec-counter</metric>
   <enumeratedValueSet variable="high-risk-employed">
-      <value value="&quot;no intervention&quot;" />
+      <value value="50" />
+    <value value="100" />
     </enumeratedValueSet>
   <enumeratedValueSet variable="total-citizens">
       <value value="5000" />
@@ -130,6 +131,9 @@
     </enumeratedValueSet>
   <enumeratedValueSet variable="population-employed-%">
       <value value="10" />
+    <value value="40" />
+    <value value="20" />
+    <value value="5" />
     <value value="40" />
     <value value="20" />
     <value value="5" />
@@ -155,6 +159,8 @@
       <value value="&quot;from scenario&quot;" />
     <value value="55" />
     <value value="45" />
+    <value value="55" />
+    <value value="45" />
     </enumeratedValueSet>
   <enumeratedValueSet variable="test-location-type">
       <value value="&quot;coffee&quot;" />
@@ -176,6 +182,9 @@
       <value value="45" />
     </enumeratedValueSet>
   <enumeratedValueSet variable="radicalization-percentage">
+      <value value="0.1" />
+    </enumeratedValueSet>
+  <enumeratedValueSet variable="authoritarian-percentage">
       <value value="0.1" />
     </enumeratedValueSet>
   </experiment>

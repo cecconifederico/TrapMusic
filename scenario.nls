@@ -20,11 +20,7 @@ to load-opinions
     set-opinion-value "Institutional distrust" -1 * item j runresult remove "," item 5 l    
     set-opinion-value "Collective relative deprivation" item j runresult remove "," item 6 l
   ]
-  let auth-threshold mean [ fundamentalism-score ] of citizens + 
-    standard-deviation [ fundamentalism-score ] of citizens
-  ask citizens [ 
-    table:put attributes "authoritarian?" fundamentalism-score >= auth-threshold
-  ]
+  make-authoritarian-threshold
 end
 
 to export-opinions [ id ]
@@ -195,6 +191,16 @@ end
 to-report calc-radicalization-threshold
   let big-list sort-on [ -1 * risk ] citizens
   report [ risk ] of item (radicalization-percentage * count citizens - 1) big-list
+end
+
+to make-authoritarian-threshold
+  ask citizens [ table:put attributes "authoritarian?" false ]
+  let big-list sort-on [ -1 * fundamentalism-score ] citizens
+  let i 0
+  while [ i < (authoritarian-percentage * count citizens) ] [
+    ask item i big-list [ table:put attributes "authoritarian?" true ]
+    set i i + 1
+  ]
 end
 
 ; citizen procedure

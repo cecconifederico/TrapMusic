@@ -847,9 +847,9 @@ ticks
 
 BUTTON
 5
-335
+365
 78
-368
+398
 NIL
 setup
 NIL
@@ -879,9 +879,9 @@ HORIZONTAL
 
 MONITOR
 10
-265
+295
 80
-310
+340
 population
 count citizens
 17
@@ -905,9 +905,9 @@ HORIZONTAL
 
 MONITOR
 80
-265
+295
 135
-310
+340
 density
 count citizens / count patches
 2
@@ -916,9 +916,9 @@ count citizens / count patches
 
 BUTTON
 165
-335
+365
 225
-368
+398
 NIL
 go
 NIL
@@ -933,9 +933,9 @@ NIL
 
 BUTTON
 230
-335
+365
 290
-368
+398
 NIL
 go
 T
@@ -950,9 +950,9 @@ NIL
 
 BUTTON
 25
-375
+405
 145
-408
+438
 profile 20
 setup                  ;; set up the model\nprofiler:start         ;; start profiling\nrepeat 20 [ go ]       ;; run something you want to measure\nprofiler:stop          ;; stop profiling\nprint profiler:report  ;; view the results\nprofiler:reset         ;; clear the data
 NIL
@@ -982,9 +982,9 @@ HORIZONTAL
 
 BUTTON
 150
-375
+405
 272
-408
+438
 profile setup
 profiler:start         ;; start profiling\nsetup                  ;; set up the model\nprofiler:stop          ;; stop profiling\nprint profiler:report  ;; view the results\nprofiler:reset         ;; clear the data
 NIL
@@ -999,9 +999,9 @@ NIL
 
 MONITOR
 195
-265
+295
 250
-310
+340
 time
 (word (ticks mod 24) \":00\")
 17
@@ -1040,9 +1040,9 @@ HORIZONTAL
 
 PLOT
 25
-415
+445
 275
-535
+565
 T1
 NIL
 NIL
@@ -1094,9 +1094,9 @@ PENS
 
 SLIDER
 15
-590
+620
 285
-623
+653
 work-socialization-probability
 work-socialization-probability
 0
@@ -1109,9 +1109,9 @@ HORIZONTAL
 
 SLIDER
 15
-630
+660
 285
-663
+693
 activity-value-update
 activity-value-update
 0
@@ -1124,9 +1124,9 @@ HORIZONTAL
 
 MONITOR
 135
-265
+295
 195
-310
+340
 NIL
 weekday
 17
@@ -1287,9 +1287,9 @@ count links
 
 SLIDER
 15
-670
+700
 285
-703
+733
 links-cap-mean
 links-cap-mean
 5
@@ -1334,9 +1334,9 @@ count citizens with [ not any? activity-link-neighbors with [ [ is-job? ] of my-
 
 SLIDER
 15
-800
+830
 217
-833
+863
 population-employed-%
 population-employed-%
 0
@@ -1349,9 +1349,9 @@ HORIZONTAL
 
 SLIDER
 15
-710
+740
 285
-743
+773
 cpo-%
 cpo-%
 0
@@ -1364,9 +1364,9 @@ HORIZONTAL
 
 SLIDER
 15
-755
+785
 322
-788
+818
 number-workers-per-community-center
 number-workers-per-community-center
 1
@@ -1379,9 +1379,9 @@ HORIZONTAL
 
 CHOOSER
 15
-540
+570
 162
-585
+615
 high-risk-employed
 high-risk-employed
 "no intervention" 50 100
@@ -1389,9 +1389,9 @@ high-risk-employed
 
 BUTTON
 80
-335
+365
 162
-368
+398
 set 'n go
 setup repeat 500 [go]
 NIL
@@ -1403,6 +1403,21 @@ NIL
 NIL
 NIL
 1
+
+SLIDER
+10
+260
+217
+293
+authoritarian-percentage
+authoritarian-percentage
+0
+1
+0.05
+0.05
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
