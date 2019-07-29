@@ -1,6 +1,6 @@
 <experiments>
-   <!--                               10 runs -->
-  <experiment name="base_rp06" repetitions="10" runMetricsEveryStep="true">
+   <!--                              * 5 runs -->
+  <experiment name="base_rp07" repetitions="5" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
     <final>show (word "Time elapsed:" timer)
@@ -180,7 +180,7 @@
       <value value="0.1"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="authoritarian-percentage">
-      <value value="0.1"/>
+      <value value="10"/>
     </enumeratedValueSet>
 </experiment>
 </experiments>

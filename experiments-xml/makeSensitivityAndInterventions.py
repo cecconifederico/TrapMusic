@@ -20,8 +20,7 @@ def indent(elem, level=0):
             elem.tail = j
     return elem
 	
-sourcetree = ET.parse('base_' + version + '.xml')
-tree = sourcetree
+tree = ET.parse('base_' + version + '.xml')
 root = tree.getroot()
 
 # first, sentitivity analysis.
@@ -47,13 +46,17 @@ al = tree.find('.//enumeratedValueSet[@variable="male-ratio"]')
 al.insert(1, ET.Element("value", value="45"))
 al.insert(1, ET.Element("value", value="55"))
 
+al = tree.find('.//enumeratedValueSet[@variable="authoritarian-percentage"]')
+al.insert(1, ET.Element("value", value="5"))
+al.insert(1, ET.Element("value", value="20"))
+
 #write to file
 tree = ET.ElementTree(indent(root))
 tree.write('sensitivity_' + version + '.xml', encoding='utf-8')
 
 # then we restart and prepare the high risk
 
-tree = sourcetree
+tree = ET.parse('base_' + version + '.xml')
 root = tree.getroot()
 
 al = tree.find('.//enumeratedValueSet[@variable="high-risk-employed"]')
@@ -71,13 +74,17 @@ al = tree.find('.//enumeratedValueSet[@variable="male-ratio"]')
 al.insert(1, ET.Element("value", value="45"))
 al.insert(1, ET.Element("value", value="55"))
 
+al = tree.find('.//enumeratedValueSet[@variable="authoritarian-percentage"]')
+al.insert(1, ET.Element("value", value="5"))
+al.insert(1, ET.Element("value", value="20"))
+
 #write to file
 tree = ET.ElementTree(indent(root))
 tree.write('high-risk_' + version + '.xml',  encoding='utf-8')
 
 # then we restart and prepare the CPOS
 
-tree = sourcetree
+tree = ET.parse('base_' + version + '.xml')
 root = tree.getroot()
 
 al = tree.find('.//enumeratedValueSet[@variable="cpo-%"]')
@@ -95,13 +102,17 @@ al = tree.find('.//enumeratedValueSet[@variable="male-ratio"]')
 al.insert(1, ET.Element("value", value="45"))
 al.insert(1, ET.Element("value", value="55"))
 
+al = tree.find('.//enumeratedValueSet[@variable="authoritarian-percentage"]')
+al.insert(1, ET.Element("value", value="5"))
+al.insert(1, ET.Element("value", value="20"))
+
 #write to file
 tree = ET.ElementTree(indent(root))
 tree.write('cpos_' + version + '.xml', encoding='utf-8')
 
 # finally, the community workers 
 
-tree = sourcetree
+tree = ET.parse('base_' + version + '.xml')
 root = tree.getroot()
 
 al = tree.find('.//enumeratedValueSet[@variable="number-workers-per-community-center"]')

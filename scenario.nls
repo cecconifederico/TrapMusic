@@ -197,7 +197,7 @@ to make-authoritarian-threshold
   ask citizens [ table:put attributes "authoritarian?" false ]
   let big-list sort-on [ -1 * fundamentalism-score ] citizens
   let i 0
-  while [ i < (authoritarian-percentage * count citizens) ] [
+  while [ i < (authoritarian-percentage / 100 * count citizens) ] [
     ask item i big-list [ table:put attributes "authoritarian?" true ]
     set i i + 1
   ]
