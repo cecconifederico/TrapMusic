@@ -442,7 +442,7 @@ to setup-citizen [ residences the-area ]
   set countdown        0
   set residence        one-of residences
   set recruited?       false
-  set hours-to-recruit round max (list 0 (random-normal recruit-hours-threshold recruit-hours-threshold / 2))
+  set hours-to-recruit round max (list 0 (random-normal recruit-hours-threshold (recruit-hours-threshold / 2)))
   set recruit-target   nobody
   set my-links-cap     5 + random (2 * links-cap-mean - 5)
   move-to residence
