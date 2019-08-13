@@ -442,7 +442,7 @@ to setup-citizen [ residences the-area ]
   set countdown        0
   set residence        one-of residences
   set recruited?       false
-  set hours-to-recruit random (2 * recruit-hours-threshold)
+  set hours-to-recruit recruit-hours-threshold + ifelse-value (random 2 = 0)[1][-1] * (random (recruit-hours-threshold * percent-range-hours-to-radicalize / 100 / 2))
   set recruit-target   nobody
   set my-links-cap     5 + random (2 * links-cap-mean - 5)
   move-to residence
@@ -769,7 +769,7 @@ end
 ; citizen reporter
 to-report recruit-allure
   report (sum map opinion-on-topic topics-list + 6) / 12 +
-  (2 * recruit-hours-threshold - hours-to-recruit) / recruit-hours-threshold +
+  (2 * max list 0 (recruit-hours-threshold - hours-to-recruit)) / recruit-hours-threshold +
   ifelse-value (self = [ recruit-target ] of myself) [ 1000 ] [ 0 ]
 end
 
@@ -884,7 +884,7 @@ total-citizens
 total-citizens
 100
 2000
-1000.0
+1500.0
 50
 1
 citizens
@@ -987,7 +987,7 @@ activity-radius
 activity-radius
 1
 100
-11.0
+5.0
 1
 1
 patches
@@ -1070,10 +1070,10 @@ PENS
 "default" 1.0 0 -16777216 true "" "set-plot-x-range 0 ticks + 1\nif any? topic-links [\n  let topic-to-plot \"Institutional distrust\"\n  let prec 2\n  let values [ [ value ] of my-in-topic-links ] of one-of topics with [ topic-name = topic-to-plot ]\n  plot-pen-up\n  plotxy ticks -1\n  plot-pen-down\n  let ys map [ n -> precision n prec ] (range -1 1 (10 ^ (0 - prec)))\n  let counts map [ y -> length filter [v -> precision v prec = y] values ] ys\n  let max-count max counts\n  let colors map [ cnt -> 9.9 - (9.9 * cnt / max-count) ] counts\n  (foreach ys colors [ [y c] ->\n    set-plot-pen-color c\n    plotxy ticks y\n  ])\n]"
 
 PLOT
-1115
-690
-1404
-820
+1120
+765
+1409
+895
 Propensity and risk
 NIL
 NIL
@@ -1089,10 +1089,10 @@ PENS
 "pen-1" 1.0 0 -7500403 true "" "if ticks > 0 [ plotxy ticks mean [ risk ] of citizens ]"
 
 PLOT
-1115
-485
-1450
-675
+1120
+560
+1455
+750
 Mean opinions
 NIL
 NIL
@@ -1183,10 +1183,10 @@ NIL
 HORIZONTAL
 
 MONITOR
-1105
-110
-1177
-155
+1110
+185
+1182
+230
 recruited
 count citizens with [ recruited? ]
 17
@@ -1194,10 +1194,10 @@ count citizens with [ recruited? ]
 11
 
 MONITOR
-1180
-110
-1262
-155
+1185
+185
+1267
+230
 susceptible
 count citizens with [ risk > radicalization-threshold ]
 17
@@ -1216,17 +1216,17 @@ count citizens with [ [ shape ] of locations-here = [ \"public space\" ] ]
 11
 
 OUTPUT
-1115
-320
-1450
-480
+1120
+395
+1455
+555
 10
 
 SWITCH
-1270
-120
-1422
-153
+1275
+195
+1427
+228
 activity-debug?
 activity-debug?
 1
@@ -1245,10 +1245,10 @@ soc-counter
 11
 
 MONITOR
-1110
-165
-1267
-210
+1115
+240
+1272
+285
 coffee mean attendance
 count citizens with [ [ shape ] of locations-here = [ \"coffee\" ] ] / count locations with [ shape = \"coffee\" ]
 17
@@ -1256,20 +1256,20 @@ count citizens with [ [ shape ] of locations-here = [ \"coffee\" ] ] / count loc
 11
 
 CHOOSER
-1110
-260
-1248
-305
+1115
+335
+1253
+380
 test-location-type
 test-location-type
 "public space" "coffee"
 1
 
 MONITOR
-1275
-165
-1422
-210
+1280
+240
+1427
+285
 NIL
 rec-counter
 17
@@ -1277,10 +1277,10 @@ rec-counter
 11
 
 MONITOR
-1110
-210
-1330
-255
+1115
+285
+1335
+330
 NIL
 min [hours-to-recruit] of citizens
 17
@@ -1325,10 +1325,10 @@ count citizens with [ [ shape ] of locations-here = [ \"residence\" ] ]
 11
 
 CHOOSER
-1255
-260
-1393
-305
+1260
+335
+1398
+380
 male-ratio
 male-ratio
 "from scenario" 45 55
@@ -1443,6 +1443,21 @@ socialize-probability
 1
 0.1
 0.05
+1
+NIL
+HORIZONTAL
+
+SLIDER
+1100
+120
+1372
+153
+percent-range-hours-to-radicalize
+percent-range-hours-to-radicalize
+5
+100
+20.0
+5
 1
 NIL
 HORIZONTAL
