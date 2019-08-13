@@ -185,5 +185,8 @@
     <enumeratedValueSet variable="socialize-probability">
       <value value="0.1"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="percent-range-hours-to-radicalize">
+      <value value="20"/>
+    </enumeratedValueSet>
 </experiment>
 </experiments>
