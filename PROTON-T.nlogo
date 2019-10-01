@@ -1044,60 +1044,6 @@ radicalization-percentage
 NIL
 HORIZONTAL
 
-PLOT
-1575
-470
-1860
-635
-Institutional distrust (each agent)
-NIL
-NIL
-0.0
-1.0
--2.0
-2.0
-false
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "set-plot-x-range 0 ticks + 1\nif any? topic-links [\n  let topic-to-plot \"Institutional distrust\"\n  let prec 2\n  let values [ [ value ] of my-in-topic-links ] of one-of topics with [ topic-name = topic-to-plot ]\n  plot-pen-up\n  plotxy ticks -1\n  plot-pen-down\n  let ys map [ n -> precision n prec ] (range -1 1 (10 ^ (0 - prec)))\n  let counts map [ y -> length filter [v -> precision v prec = y] values ] ys\n  let max-count max counts\n  let colors map [ cnt -> 9.9 - (9.9 * cnt / max-count) ] counts\n  (foreach ys colors [ [y c] ->\n    set-plot-pen-color c\n    plotxy ticks y\n  ])\n]"
-
-PLOT
-1100
-645
-1560
-790
-Propensity and risk
-NIL
-NIL
-0.0
-10.0
-0.0
-1.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "if ticks > 0 [ plotxy ticks mean [ propensity ] of citizens ]"
-"pen-1" 1.0 0 -7500403 true "" "if ticks > 0 [ plotxy ticks mean [ risk ] of citizens ]"
-
-PLOT
-1100
-470
-1560
-635
-Mean opinions
-NIL
-NIL
-0.0
-10.0
--1.0
-1.0
-true
-true
-"let n count topics\n(foreach sort topics range n [ [t i] ->\n  ask t [ create-temporary-plot-pen topic-name ]\n  set-plot-pen-color hsb (i * 360 / n) 50 50\n])" "if ticks > 0 [\n  ask topics [\n    set-current-plot-pen topic-name\n    plotxy ticks mean [value] of my-in-topic-links\n  ]\n]"
-PENS
-
 SLIDER
 5
 335
@@ -1468,24 +1414,6 @@ work-socialization-probability
 1
 NIL
 HORIZONTAL
-
-PLOT
-1575
-645
-1860
-785
-Recruited citizens
-NIL
-NIL
-0.0
-10.0
-0.0
-10.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "plot count citizens with [ recruited? ]"
 
 @#$#@#$#@
 ## WHAT IS IT?
