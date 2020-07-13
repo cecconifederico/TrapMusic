@@ -1031,21 +1031,6 @@ alpha
 NIL
 HORIZONTAL
 
-SLIDER
-5
-635
-285
-668
-radicalization-percentage
-radicalization-percentage
-5
-50
-5.0
-5
-1
-NIL
-HORIZONTAL
-
 PLOT
 1575
 470
