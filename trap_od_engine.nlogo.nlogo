@@ -26,7 +26,7 @@ globals [
 
   ]
 
-
+__includes [ "segmentations.nls" ]
 
 
 to load-populations
@@ -38,10 +38,10 @@ to setup
 
   load-populations
   setup-turtles
-  if modality = "mix" [
+  if network_modality = "mix" [
    setup-network-mix
   ]
-  if modality = "random" [
+  if network_modality = "random" [
     setup-network-random
   ]
   reset-ticks
@@ -96,165 +96,13 @@ to setup-network-mix
   ]
 end
 
+
+
+
+
 to setup-turtles
 
-  let list-gender map [[x] -> (item 28 x)] populations ;; 27th column, school-performance
-  set list-gender filter [[y] -> y > -1 ] list-gender
-  set gender []
-  (foreach [1 2][[z] ->
-    let list-one-gender filter [[y] -> y = z] list-gender
-    let one-probability (length list-one-gender) / (length list-gender)
-    set gender lput (list z one-probability) gender
-    ])
-show gender
-
-  let list-performance map [[x] -> (item 27 x)] populations ;; 27th column, school-performance
-  set list-performance filter [[y] -> y > -1 ] list-performance
-  set school-performance []
-  (foreach [1 2 3 4 5][[z] ->
-    let list-one-performance filter [[y] -> y = z] list-performance
-    let one-probability (length list-one-performance) / (length list-performance)
-    set school-performance lput (list z one-probability) school-performance
-    ])
-show school-performance
-
-  let list-competence map [[x] -> (item 2 x)] populations
-  set list-competence filter [[y] -> y > -1 ] list-competence
-  set music-competence []
-  (foreach [1 2][[z] ->
-    let list-one-competence filter [[y] -> y = z] list-competence
-    let one-probability (length list-one-competence) / (length list-competence)
-    set music-competence lput (list z one-probability) music-competence
-    ])
-  show music-competence
-
-  let list-play map [[x] -> (item 3 x)] populations
-  set list-play filter [[y] -> y > -1 ] list-play
-  set band-play []
-  (foreach [1 2][[z] ->
-    let list-one-play filter [[y] -> y = z] list-play
-    let one-probability (length list-one-play) / (length list-play)
-    set band-play lput (list z one-probability) band-play
-    ])
-  show band-play
-
-  let list-tips map [[x] -> (item 1 x)] populations
-  set list-tips filter [[y] -> y > -1 ] list-tips
-  set music-tips []
-  (foreach [1 2 3][[z] ->
-    let list-one-tips filter [[y] -> y = z] list-tips
-    let one-probability (length list-one-tips) / (length list-tips)
-    set music-tips lput (list z one-probability) music-tips
-    ])
-  show music-tips
-
-   let list-time map [[x] -> (item 14 x)] populations
-  set list-time filter [[y] -> y > -1 ] list-time
-  set music-time []
-  (foreach [1 2 3 4][[z] ->
-    let list-one-time filter [[y] -> y = z] list-time
-    let one-probability (length list-one-time) / (length list-time)
-    set music-time lput (list z one-probability) music-time
-    ])
-  show music-time
-
-
-  let list-preferences map [[x] -> (item 13 x)] populations
-  set list-preferences filter [[y] -> y > -1 ] list-preferences
-  set music-preferences []
-  (foreach [1 2 3 4 5 6 7 8 9][[z] ->
-    let list-one-preferences filter [[y] -> y = z] list-preferences
-    let one-probability (length list-one-preferences) / (length list-preferences)
-    set music-preferences lput (list z one-probability) music-preferences
-    ])
-  show music-preferences
-
-
-  let list-share map [[x] -> (item 15 x)] populations
-  set list-share filter [[y] -> y > -1 ] list-share
-  set social-share []
-  (foreach [1 2 3 4 5][[z] ->
-    let list-one-share filter [[y] -> y = z] list-share
-    let one-probability (length list-one-share) / (length list-share)
-    set social-share lput (list z one-probability) social-share
-    ])
-  show social-share
-
-
-  let list-interview map [[x] -> (item 16 x)] populations
-  set music-interview []
-  (foreach [1 2][[z] ->
-    let list-one-interview filter [[y] -> y = z] list-interview
-    let one-probability (length list-one-interview) / (length list-interview)
-    set music-interview lput (list z one-probability) music-interview
-    ])
-  show music-interview
-
-    let list-live map [[x] -> (item 17 x)] populations
-  set music-live []
-  (foreach [1 2][[z] ->
-    let list-one-live filter [[y] -> y = z] list-live
-    let one-probability (length list-one-live) / (length list-live)
-    set music-live lput (list z one-probability) music-live
-    ])
-  show music-live
-
-    let list-quotes map [[x] -> (item 18 x)] populations
-  set list-quotes filter [[y] -> y > -1 ] list-quotes
-  set music-quotes []
-  (foreach [1 2 3 4][[z] ->
-    let list-one-quotes filter [[y] -> y = z] list-quotes
-    let one-probability (length list-one-quotes) / (length list-quotes)
-    set music-quotes lput (list z one-probability) music-quotes
-    ])
-  show music-quotes
-
-    let list-dress map [[x] -> (item 19 x)] populations
-  set music-dress []
-  (foreach [1 2 3 4][[z] ->
-    let list-one-dress filter [[y] -> y = z] list-dress
-    let one-probability (length list-one-dress) / (length list-dress)
-    set music-dress lput (list z one-probability) music-dress
-    ])
-  show music-dress
-
-  let list-age map [[x] -> (item 29 x)] populations
-  set list-age filter [[y] -> y > -1 ] list-age
-  set age []
-  (foreach [1 2 3 4 5 6 7][[z] ->
-    let list-one-age filter [[y] -> y = z] list-age
-    let one-probability (length list-one-age) / (length list-age)
-    set age lput (list z one-probability) age
-    ])
-  show age
-
-let list-mom map [[x] -> (item 31 x)] populations
-  set mom-study []
-  (foreach [1 2 3 4 5][[z] ->
-    let list-one-mom filter [[y] -> y = z] list-mom
-    let one-probability (length list-one-mom) / (length list-mom)
-    set mom-study lput (list z one-probability) mom-study
-    ])
-  show mom-study
-
-  let list-dad map [[x] -> (item 32 x)] populations
-  set dad-study []
-  (foreach [1 2 3 4 5][[z] ->
-    let list-one-dad filter [[y] -> y = z] list-dad
-    let one-probability (length list-one-dad) / (length list-dad)
-    set dad-study lput (list z one-probability) dad-study
-    ])
-  show dad-study
-
-  let list-class map [[x] -> (item 33 x)] populations
-  set list-class filter [[y] -> y > -1 ] list-class
-  set class []
-  (foreach [1 2 3 4 5][[z] ->
-    let list-one-class filter [[y] -> y = z] list-class
-    let one-probability (length list-one-class) / (length list-class)
-    set class lput (list z one-probability) class
-    ])
-  show class
+  create_segmentations
 
   create-turtles N
   [
@@ -263,6 +111,7 @@ let list-mom map [[x] -> (item 31 x)] populations
     set l-opinion []
     set i-mu "null"
     set i-theta "null"
+    set color green
   ]
 
 
@@ -270,10 +119,36 @@ let list-mom map [[x] -> (item 31 x)] populations
   [
     set xcor random-xcor
     set ycor random-ycor
+    ifelse modality = "random_opinions" [
     let opinion-distribution [[0 0.25] [0.25 0.25] [0.5 0.25] [1 0.25]]
     (foreach ["rock" "classic" "jazz" "dance" "pop" "rap" "trap" "reggae" "indie"][[x] ->
       set l-opinion lput (list x first rnd:weighted-one-of-list opinion-distribution [ [p] -> last p ]) l-opinion
       ])
+    ]
+    [
+     let index_c 0
+     (foreach ["rock" "classic" "jazz" "dance" "pop" "rap" "trap" "reggae" "indie"][[x] ->
+        if x = "rock"  [set index_c 4]
+        if x = "classic"  [set index_c 5]
+        if x = "jazz"  [set index_c 6]
+        if x = "dance"  [set index_c 7]
+        if x = "pop"  [set index_c 8]
+        if x = "rap"  [set index_c 9]
+        if x = "trap"  [set index_c 10]
+        if x = "reggae"  [set index_c 11]
+        if x = "indie"  [set index_c 12]
+
+        let list-opinion map [[y] -> (item index_c y)] populations
+        let opinion-distribution []
+        (foreach [1 2 3 4][[z] ->
+         let list-one-opinion filter [[h] -> h = z] list-opinion
+         let one-probability (length list-one-opinion) / (length list-opinion)
+         set opinion-distribution lput (list z one-probability) opinion-distribution
+        ])
+
+        set l-opinion lput (list x first rnd:weighted-one-of-list opinion-distribution [ [p] -> last p ]) l-opinion
+      ])
+    ]
     set i-gender first rnd:weighted-one-of-list gender [ [p] -> last p ]
     set i-performance first rnd:weighted-one-of-list school-performance [ [p] -> last p ]
     set i-competence first rnd:weighted-one-of-list music-competence [ [p] -> last p ]
@@ -309,10 +184,10 @@ to diffusion
   [
    let talker self
    let receiver nobody
-    if modality = "without network"[
-    set receiver one-of other turtles
+    if network_modality = "without network"[
+     set receiver one-of other turtles
     ]
-    if modality = "mix" or modality = "random"
+    if network_modality = "mix" or modality = "random"
     [
       set receiver one-of other turtles with [link-neighbor? myself]
     ]
@@ -510,10 +385,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-24
-249
-196
-282
+32
+295
+204
+328
 K
 K
 0.01
@@ -525,10 +400,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-23
-285
-195
-318
+31
+331
+203
+364
 K0
 K0
 0.01
@@ -540,15 +415,15 @@ NIL
 HORIZONTAL
 
 SLIDER
-23
-324
-195
-357
+31
+370
+203
+403
 speed
 speed
 0
 3
-0.5
+1.0
 0.1
 1
 NIL
@@ -606,7 +481,7 @@ mu
 mu
 0
 1
-1.0
+0.55
 0.05
 1
 NIL
@@ -621,7 +496,7 @@ theta
 theta
 0
 1
-0.1
+0.9
 0.05
 1
 NIL
@@ -632,10 +507,20 @@ CHOOSER
 192
 158
 237
-modality
-modality
+network_modality
+network_modality
 "without network" "random" "mix"
-0
+2
+
+CHOOSER
+19
+241
+190
+286
+modality
+modality
+"random_opinions" "from_survey_opinions"
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
